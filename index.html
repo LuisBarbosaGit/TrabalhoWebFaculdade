@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script>
+        function calcularNota() {
+            event.preventDefault()
+            let nome = document.getElementById("nome").value
+            let n1 = parseFloat(document.getElementById("nota1").value)
+            let n2 = parseFloat(document.getElementById("nota2").value)
+            if (isNaN(n1) || isNaN(n2)) {
+                document.getElementById("resultado").innerHTML = "<p>Por favor, insira notas válidas.</p>";
+                return;
+            }
+            let soma = n1 + n2
+            document.getElementById("resultado").innerHTML = `<p>${nome}, o resultado da soma é: ${soma}</p>`;
+        }
+    </script>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-image: url(img/photo-1625225230517-7426c1be750c.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #container{
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center
+
+        }
+
+        #form{
+            background-color: rgb(237, 240, 245);
+            width: 400px;
+            height: 500px;
+            border-radius: 10px;
+            box-shadow: 10px 5px 5px black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.5em;
+            font-family: 'Times New Roman', Times, serif;
+            color: rgb(49, 49, 49);
+            text-transform: uppercase;
+            
+            input{
+                width: 250px;
+                height: 40px;
+                border-radius: 10px;
+                background-color: rgb(243, 243, 243);
+                padding: 5px;
+                margin: 10px;
+            }
+            button{
+                width: 250px;
+                border-radius: 15px;
+                height: 50px;
+                background-color: rgb(159, 194, 240);
+                color:rgb(46, 45, 45);
+                font-size: 1.3em;
+                text-transform: uppercase;
+            }
+            button:hover{
+                transform: scale(1.2);
+                transition: all 0.2s ease-in;
+            }  
+        }
+        #resultado{
+                width: 100%;
+                font-size: 1.5em;
+                text-align: center;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+    </style>
+</head>
+<body>
+    <div id="container">
+    <div id="form">
+        <form action="processa.php" method="post" >
+            <label for="">Nome</label> <br>
+            <input type="text" name="nome" id="nome" maxlength="70">  
+            <br> 
+            <label for="">Insira a nota 1</label> <br>
+            <input type="text" name="nota1" id="nota1" maxlength="10">
+            <br> 
+            <label for="">Insira a nota 2</label> <br>
+            <input type="text" name="nota2" id="nota2" maxlength="10"> <br> <br>
+            <button onclick="calcularNota()">Calcular</button>
+        </form>
+
+    </div>
+    </div>
+    <div id="resultado"></div>
+
+</body>
+
+
+</html>
