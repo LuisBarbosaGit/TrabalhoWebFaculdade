@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script>
+        function circulo() {
+            let x = document.getElementById('x').getContext('2d')
+            x.beginPath()
+            x.arc(400, 250, 60, 0, 2 * Math.PI);
+            x.fillStyle = 'blue'
+            x.fill()  ;
+            x.stroke()      
+        }
+        function retangulo(params) {
+            let x = document.getElementById('x').getContext('2d')
+            x.fillStyle = 'green'
+            x.fillRect(150, 100, 500, 300);
+            x.beginPath()
+            x.fill()        
+        }
+        function losango() {
+            let x = document.getElementById('x').getContext('2d')
+            x.beginPath();
+            x.moveTo(400, 150); // Ponto superior
+            x.lineTo(600, 250); // Ponto direito
+            x.lineTo(400, 350); // Ponto inferior
+            x.lineTo(200, 250); // Ponto esquerdo
+            x.closePath();
+            x.strokeStyle = 'black'
+            x.stroke()
+            x.fillStyle = 'yellow'
+            x.fill()        
+        }
+    </script>
+    <style>
+        #conteudo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: oklch(12.9% 0.042 264.695);
+            margin: 0;
+            padding: 1px;
+            font-family: 'Bebas Neue', sans-serif; 
+            h1{
+            background: linear-gradient(90deg, #009739, #FFCC29, #0033A0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            }
+        }
+
+        #x{
+            background-color: oklch(96.7% 0.001 286.375);
+        }
+        #botoes{
+            display: flex;
+            gap: 15px;
+            margin: 10px;
+            button{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 90px;
+                height: 40px;
+                font-family: 'Bebas Neue', sans-serif;
+                font-size: 1.3em;
+                background-color: oklch(78.5% 0.115 274.713);
+                color: rgb(0, 0, 0);
+                text-transform: uppercase;
+                border-radius: 10px;
+                }
+            button:hover{
+                transform: scale(1.1);
+                transition: all 0.1s ease-in;
+                cursor: pointer;
+            }
+                
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="conteudo">
+        <h1>Clique nos botões para desenhar nossa bandeira</h1>
+        <canvas width="800px" height="500px" id="x" style="border: 1px solid rgb(255, 12, 12); border-radius: 10px;"></canvas>
+        <div id="botoes">
+            <button onclick="circulo()">Circulo</button>
+            <button onclick="retangulo()">Retângulo</button>
+            <button onclick="losango()">Losango</button>
+        </div>
+    </div>
+</body>
+</html>

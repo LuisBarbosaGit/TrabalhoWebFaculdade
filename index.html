@@ -3,50 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <title>Menu com jQuery</title>
-    <script src="js/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        $(function () {
-    $("nav a").on("click", function () {
-        $("#conteudo").load($(this).data("page"));
-    });
+        $(function Navegar() {
+            $("nav a").on("click", function () {
+                $("#conteudo").load($(this).data("page"));
+            });
         });
     </script>
-    <style>
-        nav a {
-            margin: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            color: blue;
-        }
-        #conteudo {
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
 
     <style>
         *{
-            padding: 0;
             margin: 0;
+            padding: 0;
         }
-        .container{
-            width: 100%;
-            height: 100vh;
-            background-image: url(img/carro5.png);
-            background-repeat: no-repeat;
-            background-size: cover;
+        body{
+            background-color: oklch(12.9% 0.042 264.695);
         }
+        #navbar{
+            display: flex;
+            height: 140px;
+            background-color: oklch(26.9% 0 0);
+            justify-content: space-around;
+            align-items: end;
+            a{
+                padding: 10px;
+                height: 30px;
+                font-family: 'Anton', sans-serif;
+                font-size: 1.5em;
+                color: white;
+            }
+            a:hover{
+                background-color: oklch(87.2% 0.01 258.338);
+                cursor: pointer;
+                transform: scale(1.1);
+                transition: all 0.2s ease-in;
+                color: black;
+                border-radius: 10px;
+            }
+            h1{
+                width: 400px;
+                text-transform: uppercase;
+                font-family: 'Bebas Neue', sans-serif;
+                background: linear-gradient(90deg, #D32F2F, #FF5722);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 3.5em;
+                
+            }
+            #logo{
+                display: flex;
+                justify-content: end;
+                width: 400px;
+                height: 160px;
+            }
+        }
+        #menu{
+            display: flex;
+            gap: 10px;
+            align-items: end;
+            justify-content: end;
+        }
+        #conteudo {
+            color: oklch(92.9% 0.013 255.508);
+            height: 81vh;
+            font-size: 0.8em;
+               
+        }
+        #subtitulo{
+            text-align: center;
+        }
+       
     </style>
 </head>
 <body>
-    <div class="container">
-
-        <nav>
-            <a data-page="home.html">Home</a>
-            <a data-page="sobre.html">Sobre</a>
-            <a data-page="contato.html">Contato</a>
-            <a data-page="form2.html">Cadastra-se</a>
-        </nav>
+    <nav id="navbar">
+        <h1>Gears-Head Piracicaba</h1>
+        <div id="menu">
+            <a data-page="pages/home.html">Home</a>
+            <a data-page="pages/sobre.html">Sobre</a>
+            <a data-page="pages/contato.html">Contato</a>
+            <a data-page="pages/form1.html">Login</a>
+            <a data-page="pages/form2.html">Cadastra-se</a>
+            <a data-page="pages/canvas01.html">Desenho</a>
+            <a data-page="pages/canvas2.html">Game</a>
+        </div>
+        <div id="logo">
+            <img width="160" height="160" src="img/transport.png" alt="">
+        </div>
+    </nav>
+    <div id="conteudo">
+        <h2 id="subtitulo">Navegue entre nosso conteúdo atráves do menu acima</h2>
     </div>
-
 </body>
 </html>
