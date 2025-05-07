@@ -4,20 +4,11 @@
     <meta charset="UTF-8">
     <title>Menu com jQuery</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $(function Navegar() {
-            $("nav a").on("click", function () {
-                $("#conteudo").load($(this).data("page"));
-            });
-        });
-    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-
-
-
     <style>
         *{
             margin: 0;
@@ -37,7 +28,8 @@
                 height: 30px;
                 font-family: 'Anton', sans-serif;
                 font-size: 1.5em;
-                color: white;
+                color: white; 
+                line-height: 30px;
             }
             a:hover{
                 background-color: oklch(87.2% 0.01 258.338);
@@ -54,7 +46,7 @@
                 background: linear-gradient(90deg, #D32F2F, #FF5722);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
-                font-size: 3.5em;
+                font-size: 55px;
                 
             }
             #logo{
@@ -72,15 +64,21 @@
         }
         #conteudo {
             color: oklch(92.9% 0.013 255.508);
-            height: 81vh;
-            font-size: 0.8em;
                
         }
         #subtitulo{
+            font-size: 20px;
             text-align: center;
         }
        
     </style>
+    <script>
+        $(function Navegar() {
+            $("nav a").on("click", function () {
+                $("#conteudo").load($(this).data("page"));
+            });
+        });
+    </script>
 </head>
 <body>
     <nav id="navbar">
@@ -95,7 +93,7 @@
             <a data-page="pages/canvas2.html">Game</a>
         </div>
         <div id="logo">
-            <img width="160" height="160" src="img/transport.png" alt="">
+            <img width="160" height="160" src="pages/img/transport.png" alt="">
         </div>
     </nav>
     <div id="conteudo">
