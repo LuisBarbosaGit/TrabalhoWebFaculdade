@@ -13,7 +13,10 @@
                 document.getElementById("resultado").innerHTML = `<p>Dados  inválidos, Tente Novamente!!</p>`;
             }else{
                 document.getElementById("resultado").innerHTML = `<p> Login Realizado Com sucesso</p>`;
-                window.location.href = "index.html";
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                    
+                }, 1000);
             }
         }
     </script>

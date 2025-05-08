@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe a imagem</title>
+    <script>
+        let urls = [
+            'https://cdn.awsli.com.br/1204/1204193/arquivos/chevette-4.jpg',
+            'https://www.citycarautomoveis.com.br/carros/5ca3e8ad1d9871e9422d78c2001943c7-thumbjpeg-hyundai-azera-11375593-1000-750-70.jpg',
+            'https://cdn.motor1.com/images/mgl/R70Nx/s1/dodge-viper-fim-da-producao.jpg',
+            'https://www.autoo.com.br/fotos/2016/1/1280_960/fiat_marea_2007_1_1812016_545_1280_960.jpg'
+            ]
+        let gabarito = [
+            'CHEVETTE',
+            'AZERA',
+            'VIPER',
+            'MAREA'
+        ]
+        let aposta = 0
+        let imagens = []
+        function carregarImagens() {
+            return new Promise((resolve) => {
+                urls.forEach((url, index) => {
+                    let img = new Image();
+                    img.src = url
+                    imagens.push(img)
+                }) 
+                if (imagens){
+                   resolve() 
+                }
+            })
+        }
+        function sorteiraNumero() {
+            aposta = Math.floor(Math.random() * 4);
+        }
+
+        function verificaResposta(imgIndex) {
+            let resposta = gabarito[imgIndex]
+            let usuarioInput = document.getElementById('carroNome').value.toUpperCase()
+            if (resposta === usuarioInput) {
+                return true
+            }
+            else{
+                return false
+            }
+        }
+        carregarImagens();
+        
+        async function jogar() {
+            limparCanvas();
+            if (document.getElementById('botao').textContent === "Jogar") {
+                sorteiraNumero()
+                let index = aposta
+                exibeImagens(index)
+            }
+            else if(document.getElementById('botao').textContent === "Advinhe"){
+                 if (verificaResposta(aposta)){
+                    limparCanvas()
+                    let ctx = document.getElementById('x').getContext('2d');
+                    ctx.font = "40px Arial";
+                    ctx.fillStyle = "green"
+                    ctx.fillText("Parabens, resposta corrreta", 80, 270);
+                    sorteiraNumero()
+                    let index = aposta
+                    setTimeout(() => {
+                        exibeImagens(index)
+                    }, 2000);
+                 }
+                 else{
+                    limparCanvas()
+                    let ctx = document.getElementById('x').getContext('2d');
+                    ctx.font = "40px Arial";
+                    ctx.fillStyle = "red"
+                    ctx.fillText("Resposta incorreta :( Tente novamente", 80, 270);
+                    setTimeout(() => {
+                        exibeImagens(aposta)
+                    }, 2000);
+                 }
+            }         
+        }
+
+        function exibeImagens(Index) {
+            limparCanvas()
+            let ctx = document.getElementById('x').getContext('2d');
+            ctx.font = "40px Arial";
+            ctx.fillStyle = "black"
+            ctx.fillText("Carregando, Aguarde...", 200, 270);
+            setTimeout(() => {
+                document.getElementById('botao').textContent = "Advinhe"
+                document.getElementById('inputEscolha').innerHTML = `<input type="text" id="carroNome">`
+                document.getElementById('botao').style.width = '150px'
+                let img = imagens[Index]
+                    console.log(Index)
+                    ctx.drawImage(img, 0, 0, 800, 500)
+            }, 1000);
+                 
+        }
+
+        function limparCanvas() {
+            let ctx = document.getElementById('x').getContext('2d');
+            ctx.clearRect(0, 0, 800, 500)
+        }
+
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #conteudo{
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: oklch(12.9% 0.042 264.695);
+            padding: 1px;
+            font-family: 'Bebas Neue', sans-serif; 
+            
+        }
+        #conteudo h1{
+            background: linear-gradient(90deg, #e98990, #f30020);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.1em;
+            margin: 15px;
+            
+            }
+
+        #x{
+            background-color: oklch(96.7% 0.001 286.375);
+        }
+        #botoes button{
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px;
+            line-height: 40px;
+            width: 110px;
+            height: 40px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.7em;
+            background-color: oklch(78.5% 0.115 274.713);
+            color: rgb(0, 0, 0);
+            text-transform: uppercase;
+            border-radius: 10px;
+            }     
+        #botoes button:hover{
+            transform: scale(1.1);
+            transition: all 0.05s ease-in;
+            cursor: pointer;
+        }
+        #carroNome{
+            width: 200px;
+            border-radius: 10px;
+            margin: 15px;
+            height: 40px;
+        }
+        </style>
+</head>
+<body>
+    <div id="conteudo">
+        <h1>Teste seu conhecimento sobre carros, escreva o nome dos modelos com base na imagem</h1>
+        <canvas width="800px" height="500px" id="x" style="border: 1px solid rgb(255, 12, 12); border-radius: 10px;"></canvas>
+        <div id="inputEscolha"></div>
+        <div id="botoes">
+            <button id="botao" onclick="jogar()">Jogar</button>
+        </div>
+    </div>
+</body>
+</html>
