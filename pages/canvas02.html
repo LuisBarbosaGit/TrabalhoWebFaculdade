@@ -9,14 +9,22 @@
             'https://cdn.awsli.com.br/1204/1204193/arquivos/chevette-4.jpg',
             'https://www.citycarautomoveis.com.br/carros/5ca3e8ad1d9871e9422d78c2001943c7-thumbjpeg-hyundai-azera-11375593-1000-750-70.jpg',
             'https://cdn.motor1.com/images/mgl/R70Nx/s1/dodge-viper-fim-da-producao.jpg',
-            'https://www.autoo.com.br/fotos/2016/1/1280_960/fiat_marea_2007_1_1812016_545_1280_960.jpg'
+            'https://upload.wikimedia.org/wikipedia/commons/b/b0/Fiat_Marea_2420V_2003.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/0/0d/Ferrari_F40_at_Auto_Salon_Singen_Germany_432393386.jpg',
+            'https://autoentusiastas.com.br/ae/wp-content/uploads/2020/04/Vectra-25.jpg',
+            'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/d2/d4/48/caption.jpg?w=1200&h=-1&s=1'
             ]
         let gabarito = [
             'CHEVETTE',
             'AZERA',
             'VIPER',
-            'MAREA'
+            'MAREA',
+            'F40',
+            'VECTRA',
+            'MAZDA RX7'
         ]
+        let acertos = 0 
+        let erros = 0;
         let aposta = 0
         let imagens = []
         function carregarImagens() {
@@ -32,16 +40,20 @@
             })
         }
         function sorteiraNumero() {
-            aposta = Math.floor(Math.random() * 4);
+            aposta = Math.floor(Math.random() * 7);
         }
 
         function verificaResposta(imgIndex) {
             let resposta = gabarito[imgIndex]
             let usuarioInput = document.getElementById('carroNome').value.toUpperCase()
             if (resposta === usuarioInput) {
+                acertos++
+                document.getElementById('acerto').textContent = acertos
                 return true
             }
             else{
+                erros++
+                document.getElementById('erro').textContent = erros
                 return false
             }
         }
@@ -51,8 +63,8 @@
             limparCanvas();
             if (document.getElementById('botao').textContent === "Jogar") {
                 sorteiraNumero()
-                let index = aposta
-                exibeImagens(index)
+                let Oldindex = aposta
+                exibeImagens(Oldindex)
             }
             else if(document.getElementById('botao').textContent === "Advinhe"){
                  if (verificaResposta(aposta)){
@@ -61,10 +73,13 @@
                     ctx.font = "40px Arial";
                     ctx.fillStyle = "green"
                     ctx.fillText("Parabens, resposta corrreta", 80, 270);
-                    sorteiraNumero()
-                    let index = aposta
+                    let Oldindex = aposta
+                    while (aposta === Oldindex) {
+                        sorteiraNumero()  
+                    }
+                    let Currentindex = aposta
                     setTimeout(() => {
-                        exibeImagens(index)
+                        exibeImagens(Currentindex)
                     }, 2000);
                  }
                  else{
@@ -88,7 +103,7 @@
             ctx.fillText("Carregando, Aguarde...", 200, 270);
             setTimeout(() => {
                 document.getElementById('botao').textContent = "Advinhe"
-                document.getElementById('inputEscolha').innerHTML = `<input type="text" id="carroNome">`
+                document.getElementById('inputEscolha').innerHTML = `<input type="text" id="carroNome" autocomplete="off">`
                 document.getElementById('botao').style.width = '150px'
                 let img = imagens[Index]
                     console.log(Index)
@@ -108,18 +123,18 @@
             margin: 0;
             padding: 0;
         }
-        #conteudo{
+        #container{
             display: flex;
-            height: 100vh;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             background-color: oklch(12.9% 0.042 264.695);
             padding: 1px;
             font-family: 'Bebas Neue', sans-serif; 
+            border: 1px solid red;
             
         }
-        #conteudo h1{
+        #container h1{
             background: linear-gradient(90deg, #e98990, #f30020);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -127,6 +142,17 @@
             margin: 15px;
             
             }
+        #pontuacao{
+            display: flex;
+            font-size: 1.6em;
+            justify-content: space-around;
+            width: 50%;
+            border: 1px solid red;
+            height: 50px;
+            margin: 10x auto;
+            text-transform: uppercase;
+            color: white;
+        }
 
         #x{
             background-color: oklch(96.7% 0.001 286.375);
@@ -136,11 +162,11 @@
             justify-content: center;
             gap: 15px;
             margin: 10px;
-            line-height: 40px;
+            line-height: 50px;
             width: 110px;
-            height: 40px;
+            height: 50px;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.7em;
+            font-size: 1.9em;
             background-color: oklch(78.5% 0.115 274.713);
             color: rgb(0, 0, 0);
             text-transform: uppercase;
@@ -155,13 +181,20 @@
             width: 200px;
             border-radius: 10px;
             margin: 15px;
+            font-size: 21px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
             height: 40px;
         }
         </style>
 </head>
 <body>
-    <div id="conteudo">
+    <div id="container">
         <h1>Teste seu conhecimento sobre carros, escreva o nome dos modelos com base na imagem</h1>
+        <div id="pontuacao">
+            <h2 style="color: green;">Acertos: <span id="acerto">0</span> </h2>
+            <h2 style="color: red;">Erros:<span id="erro">0</span></h2>
+        </div>
         <canvas width="800px" height="500px" id="x" style="border: 1px solid rgb(255, 12, 12); border-radius: 10px;"></canvas>
         <div id="inputEscolha"></div>
         <div id="botoes">
