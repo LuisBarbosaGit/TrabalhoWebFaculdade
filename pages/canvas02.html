@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adivinhe a imagem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <script>
         let urls = [
             'https://cdn.awsli.com.br/1204/1204193/arquivos/chevette-4.jpg',
@@ -72,9 +74,9 @@
                  if (verificaResposta(aposta)){
                     limparCanvas()
                     let ctx = document.getElementById('x').getContext('2d');
-                    ctx.font = "40px Arial";
+                    ctx.font = "42px Anton";
                     ctx.fillStyle = "green"
-                    ctx.fillText("Parabens, resposta corrreta", 80, 270);
+                    ctx.fillText("PARABÉNS, RESPOSTA CORRETA", 170, 270);
                     let Oldindex = aposta
                     while (aposta === Oldindex) {
                         sorteiraNumero()  
@@ -87,9 +89,9 @@
                  else{
                     limparCanvas()
                     let ctx = document.getElementById('x').getContext('2d');
-                    ctx.font = "40px Arial";
+                    ctx.font = "40px Anton";
                     ctx.fillStyle = "red"
-                    ctx.fillText("Resposta incorreta :( Tente novamente", 80, 270);
+                    ctx.fillText("RESPOSTA INCORRETA, TENTE NOVAMENTE", 100, 270);
                     setTimeout(() => {
                         exibeImagens(aposta)
                     }, 2000);
@@ -101,7 +103,7 @@
             limparCanvas()
             const canvas = document.getElementById('x');
             let ctx = canvas.getContext('2d');
-            ctx.font = "40px Arial";
+            ctx.font = "43px Anton";
             ctx.fillStyle = "black"
             ctx.fillText("Carregando, Aguarde...", 200, 270);
             setTimeout(() => {
@@ -172,14 +174,16 @@
             height: 50px;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.9em;
-            background-color: oklch(78.5% 0.115 274.713);
-            color: rgb(0, 0, 0);
+            background-color: oklch(57.7% 0.245 27.325);
+            color: oklch(20.8% 0.042 265.755);
             text-transform: uppercase;
             border-radius: 10px;
             }     
         #botoes button:hover{
-            transform: scale(1.1);
+            transform: scale(1.05);
             transition: all 0.05s ease-in;
+            background-color: oklch(51.4% 0.222 16.935);
+            color: oklch(86.9% 0.022 252.894);
             cursor: pointer;
         }
         #carroNome{

@@ -8,7 +8,7 @@ Este projeto foi desenvolvido usando HTML, CSS e jQuery para fornecer uma navega
 
 ## Funcionalidades
 
-- **Menu de Navegação**: Navegue facilmente entre diferentes seções da página, como *Home*, *Sobre*, *Contato*, *Login*, *Cadastro*, *Desenho* e *Game*.
+* - **Menu de Navegação**: Navegue facilmente entre diferentes seções da página, como *Home*, *Sobre*, *Contato*, **Login*, *Cadastro*, *Desenho* e *Game*.
 - **Carregamento Dinâmico**: Páginas e conteúdo são carregados de forma dinâmica sem recarregar a página, proporcionando uma experiência mais rápida e fluida.
 - **Estilo Responsivo**: O layout é responsivo, garantindo uma boa experiência em dispositivos móveis e desktops.
 - **Design Atraente**: O site utiliza fontes personalizadas e gradientes modernos para dar um toque único ao visual.
@@ -20,4 +20,9 @@ Este projeto foi desenvolvido usando HTML, CSS e jQuery para fornecer uma navega
 1. **Clone este repositório**:
    ```bash
    git clone https://github.com/seu-usuario/gears-head-piracicaba.git
+
+## Funcionalidades adicionadas:
+   - [ x ] Contagem de erros e acertos.
+   - [ x ] Contagem de tempo para tentativa.
+   - [ x ] Finalização com erros e acertos + pontuação.
 
